@@ -1,0 +1,8 @@
+pandas
+streamlit
+requests
+pytest
+pytest-mock
+boto3
+pydantic
+plotly
