@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from typing import List, Type, Optional, Any
 
 
-class FinancialCacheManager:
+class FinancialDataRepository:
     """
     Universal DynamoDB cache manager for financial statement datasets.
     Uses:
