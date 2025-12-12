@@ -1,6 +1,8 @@
 """
 Page Factory for creating and managing pages in the application.
 """
+from app.ui.pages.meta import ValuationProblemsPage
+from app.ui.pages.lenses import LensesPage
 from app.ui.pages.executive_page import ExecutivePage
 from app.ui.pages.profit_engine_page import ProfitEnginePage
 from app.ui.pages.cash_engine_page import CashEnginePage
@@ -22,8 +24,10 @@ class PageFactory:
         "Capital Allocation": CapitalAllocationPage,
         "Financial Strength": FinancialStrengthPage,
         "Valuation": ValuationPage,
-        "Narrative Generator": NarrativeGeneratorPage,
-        "Data": DataPage,
+        # "Narrative Generator": NarrativeGeneratorPage,
+        # "Data": DataPage,
+        "Lenses": LensesPage,
+        "Textbook": ValuationProblemsPage
     }
 
     @staticmethod

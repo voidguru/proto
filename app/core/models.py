@@ -3,6 +3,72 @@ from typing import List
 from pydantic import BaseModel, validator
 from decimal import Decimal
 
+class Ratios(BaseModel):
+    symbol: str
+    date: str
+    fiscalYear: int
+    period: str
+    reportedCurrency: str
+    grossProfitMargin: Decimal
+    ebitMargin: Decimal
+    ebitdaMargin: Decimal
+    operatingProfitMargin: Decimal
+    pretaxProfitMargin: Decimal
+    continuousOperationsProfitMargin: Decimal
+    netProfitMargin: Decimal
+    bottomLineProfitMargin: Decimal
+    receivablesTurnover: Decimal
+    payablesTurnover: Decimal
+    inventoryTurnover: Decimal
+    fixedAssetTurnover: Decimal
+    assetTurnover: Decimal
+    currentRatio: Decimal
+    quickRatio: Decimal
+    solvencyRatio: Decimal
+    cashRatio: Decimal
+    priceToEarningsRatio: Decimal
+    priceToEarningsGrowthRatio: Decimal
+    forwardPriceToEarningsGrowthRatio: Decimal
+    priceToBookRatio: Decimal
+    priceToSalesRatio: Decimal
+    priceToFreeCashFlowRatio: Decimal
+    priceToOperatingCashFlowRatio: Decimal
+    debtToAssetsRatio: Decimal
+    debtToEquityRatio: Decimal
+    debtToCapitalRatio: Decimal
+    longTermDebtToCapitalRatio: Decimal
+    financialLeverageRatio: Decimal
+    workingCapitalTurnoverRatio: Decimal
+    operatingCashFlowRatio: Decimal
+    operatingCashFlowSalesRatio: Decimal
+    freeCashFlowOperatingCashFlowRatio: Decimal
+    debtServiceCoverageRatio: Decimal
+    interestCoverageRatio: Decimal
+    shortTermOperatingCashFlowCoverageRatio: Decimal
+    operatingCashFlowCoverageRatio: Decimal
+    capitalExpenditureCoverageRatio: Decimal
+    dividendPaidAndCapexCoverageRatio: Decimal
+    dividendPayoutRatio: Decimal
+    dividendYield: Decimal
+    dividendYieldPercentage: Decimal
+    revenuePerShare: Decimal
+    netIncomePerShare: Decimal
+    interestDebtPerShare: Decimal
+    cashPerShare: Decimal
+    bookValuePerShare: Decimal
+    tangibleBookValuePerShare: Decimal
+    shareholdersEquityPerShare: Decimal
+    operatingCashFlowPerShare: Decimal
+    capexPerShare: Decimal
+    freeCashFlowPerShare: Decimal
+    netIncomePerEBT: Decimal
+    ebtPerEbit: Decimal
+    priceToFairValue: Decimal
+    debtToMarketCap: Decimal
+    effectiveTaxRate: Decimal
+    enterpriseValueMultiple: Decimal
+    dividendPerShare: Decimal
+
 class KeyMetrics(BaseModel):
     """
     Flexible Pydantic model for FMP Key Metrics response.
@@ -13,14 +79,53 @@ class KeyMetrics(BaseModel):
     fiscalYear: Optional[str]
     period: Optional[str]
     reportedCurrency: Optional[str]
+    marketCap: Decimal
+    enterpriseValue: Decimal
+    evToSales: Decimal
+    evToOperatingCashFlow: Decimal
+    evToFreeCashFlow: Decimal
+    evToEBITDA: Decimal
+    netDebtToEBITDA: Decimal
+    currentRatio: Decimal
+    incomeQuality: Decimal
+    grahamNumber: Optional[Decimal]
+    grahamNetNet: Decimal
+    taxBurden: Decimal
+    interestBurden: Decimal
+    workingCapital: Decimal
+    investedCapital: Decimal
+    returnOnAssets: Decimal
+    operatingReturnOnAssets: Decimal
+    returnOnTangibleAssets: Decimal
+    returnOnEquity: Decimal
+    returnOnInvestedCapital: Decimal
+    returnOnCapitalEmployed: Decimal
+    earningsYield: Decimal
+    freeCashFlowYield: Decimal
+    capexToOperatingCashFlow: Decimal
+    capexToDepreciation: Decimal
+    capexToRevenue: Decimal
+    salesGeneralAndAdministrativeToRevenue: Decimal
+    researchAndDevelopementToRevenue: Decimal
+    stockBasedCompensationToRevenue: Decimal
+    intangiblesToTotalAssets: Decimal
+    averageReceivables: Decimal
+    averagePayables: Decimal
+    averageInventory: Decimal
+    daysOfSalesOutstanding: Decimal
+    daysOfPayablesOutstanding: Decimal
+    daysOfInventoryOutstanding: Decimal
+    operatingCycle: Decimal
+    cashConversionCycle: Decimal
+    freeCashFlowToEquity: Decimal
+    freeCashFlowToFirm: Decimal
+    tangibleAssetValue: Decimal
+    netCurrentAssetValue: Decimal
      
     def float_to_decimal(cls, v):
         if isinstance(v, Decimal):
             return Decimal(str(v))
         return v
-
-    class Config:
-        extra = "allow"  # accept all other fields
 
 
 class BalanceSheet(BaseModel):

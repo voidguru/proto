@@ -27,23 +27,25 @@ def main():
         symbol_input = st.sidebar.selectbox("Select Stock Symbol:", options=settings.ALLOWED_SYMBOLS, index=settings.ALLOWED_SYMBOLS.index(state.symbol) if state.symbol in settings.ALLOWED_SYMBOLS else 0)
         if st.sidebar.button("Fetch Data"):
             if symbol_input:
-                bs, is_, cf, metrics = service.get_financial_statements(symbol_input)
-                bs_df, is_df, cf_df, metrics_df = service.convert_to_dataframes(bs, is_, cf, metrics)
+                bs, is_, cf, metrics, financials = service.get_financial_statements(symbol_input)
+                bs_df, is_df, cf_df, metrics_df, financials_df = service.convert_to_dataframes(bs, is_, cf, metrics, financials)
                 state.balance_sheet_df = bs_df
                 state.income_statement_df = is_df
                 state.cashflow_df = cf_df
-                state.metrics_df = service.compute_metrics(is_df, bs_df, cf_df, metrics_df)
+                state.metrics_df = metrics_df
+                state.financials_df = financials_df
                 state.symbol = symbol_input
     elif upload_option == 'Use embedded example (AAPL demo)':
         with open("data/mock_data.json", "r") as f:
             raw = json.load(f)
-        bs_models, is_models, cf_models = service.load_mock_data("data/mock_data.json")
-        bs_df, is_df, cf_df = service.convert_to_dataframes(bs_models, is_models, cf_models, [])
+        bs_models, is_models, cf_models, metrics_models, financials = service.load_mock_data("data/mock_data.json")
+        bs_df, is_df, cf_df, metrics_df, financials_df = service.convert_to_dataframes(bs_models, is_models, cf_models, metrics_models, financials)
+        print("COLONNNNNE", financials_df.columns)
         state.balance_sheet_df = bs_df
         state.income_statement_df = is_df
         state.cashflow_df = cf_df
-        state.metrics_df = service.compute_metrics(is_df, bs_df, cf_df, pd.DataFrame())
-
+        state.metrics_df = metrics_df
+        state.financials_df = financials_df
 
     if state.metrics_df is not None and not state.metrics_df.empty:
         tabs = st.tabs(list(PageFactory.PAGES.keys()))
