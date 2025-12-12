@@ -22,6 +22,9 @@ class AppState:
             st.session_state.bs_df = None
         if "symbol" not in st.session_state:
             st.session_state.symbol = ""
+        if "financials_df" not in st.session_state:
+            st.session_state.financials_df = None
+                
 
     def get(self, key: str) -> Any:
         """Gets a value from the session state."""
@@ -38,6 +41,14 @@ class AppState:
     @cashflow_df.setter
     def cashflow_df(self, value: pd.DataFrame):
         self.set("cf_df", value)
+
+    @property
+    def financials_df(self) -> Optional[pd.DataFrame]:
+        return self.get("financials_df")
+
+    @financials_df.setter
+    def financials_df(self, value: pd.DataFrame):
+        self.set("financials_df", value)
 
     @property
     def metrics_df(self) -> Optional[pd.DataFrame]:
