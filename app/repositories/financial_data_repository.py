@@ -18,8 +18,9 @@ class FinancialDataRepository:
         api_key: str,
         base_url: str = "https://financialmodelingprep.com/stable",
         max_cache_age_hours: int = 24,
+        aws_region: str = "us-east-1",
     ):
-        self.dynamodb = boto3.resource("dynamodb")
+        self.dynamodb = boto3.resource("dynamodb", region_name=aws_region)
         self.table = self.dynamodb.Table(table_name)
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
@@ -87,7 +88,7 @@ class FinancialDataRepository:
         # 2. Call external API
         # --------------------------
         url = self._build_url(endpoint, symbol, extra_params)
-        r = requests.get(url)
+        r = requests.get(url, timeout=10)
         r.raise_for_status()
         json_data = r.json()
 
