@@ -158,103 +158,103 @@ class ValuationPage(BasePage):
         # -------------------------
         # Historical Multiple Bands (Regression-based)
         # -------------------------
-        st.subheader("Regression Valuation Bands (P/E Based)")
+        # st.subheader("Regression Valuation Bands (P/E Based)")
 
-        if "priceToEarningsRatio" in df_yield.columns:
-            valid = df_yield[['date', 'priceToEarningsRatio', 'price']].dropna()
-            if len(valid) > 5:
-                # Estimate price implied by historical average multiple
-                avg_pe = valid["priceToEarningsRatio"].mean()
-                latest_eps = latest_is.get("eps", np.nan)
+        # if "priceToEarningsRatio" in df_yield.columns:
+        #     valid = df_yield[['date', 'priceToEarningsRatio', 'price']].dropna()
+        #     if len(valid) > 5:
+        #         # Estimate price implied by historical average multiple
+        #         avg_pe = valid["priceToEarningsRatio"].mean()
+        #         latest_eps = latest_is.get("eps", np.nan)
 
-                if not pd.isna(latest_eps):
-                    implied_price = avg_pe * latest_eps
+        #         if not pd.isna(latest_eps):
+        #             implied_price = avg_pe * latest_eps
 
-                    st.metric(
-                        "Price Implied by Historical P/E",
-                        f"${implied_price:,.2f}"
-                    )
+        #             st.metric(
+        #                 "Price Implied by Historical P/E",
+        #                 f"${implied_price:,.2f}"
+        #             )
 
-                    # Plot actual price vs implied band
-                    df_yield["implied_price"] = df_yield["priceToEarningsRatio"].mean() * df_is.get("eps", np.nan)
-                    fig_band = go.Figure()
-                    fig_band.add_trace(go.Line(x=df_yield["date"], y=df_yield["price"], name="Actual Price"))
-                    fig_band.add_trace(go.Line(x=df_yield["date"], y=df_yield["implied_price"], name="Implied Price (Avg P/E)"))
-                    fig_band.update_layout(title="Valuation Band: Price vs Implied Value")
-                    st.plotly_chart(fig_band, )
-                else:
-                    st.info("No EPS available for implied valuation.")
-            else:
-                st.info("Not enough historical data for regression valuation bands.")
-        else:
-            st.info("Need P/E and price fields to compute valuation bands.")
+        #             # Plot actual price vs implied band
+        #             df_yield["implied_price"] = df_yield["priceToEarningsRatio"].mean() * df_is.get("eps", np.nan)
+        #             fig_band = go.Figure()
+        #             fig_band.add_trace(go.Line(x=df_yield["date"], y=df_yield["price"], name="Actual Price"))
+        #             fig_band.add_trace(go.Line(x=df_yield["date"], y=df_yield["implied_price"], name="Implied Price (Avg P/E)"))
+        #             fig_band.update_layout(title="Valuation Band: Price vs Implied Value")
+        #             st.plotly_chart(fig_band, )
+        #         else:
+        #             st.info("No EPS available for implied valuation.")
+        #     else:
+        #         st.info("Not enough historical data for regression valuation bands.")
+        # else:
+        #     st.info("Need P/E and price fields to compute valuation bands.")
 
-        st.write("---")
+        # st.write("---")
 
         # -------------------------
         # Valuation Scorecard (Simple Rules)
         # -------------------------
-        st.subheader("Valuation Scorecard")
+        # st.subheader("Valuation Scorecard")
 
-        score = 0
-        max_score = 500
+        # score = 0
+        # max_score = 500
 
-        # P/E
-        if not pd.isna(pe):
-            if pe < 15:
-                score += 90
-            elif pe < 25:
-                score += 70
-            elif pe < 35:
-                score += 50
-            else:
-                score += 20
-        else:
-            score += 50
+        # # P/E
+        # if not pd.isna(pe):
+        #     if pe < 15:
+        #         score += 90
+        #     elif pe < 25:
+        #         score += 70
+        #     elif pe < 35:
+        #         score += 50
+        #     else:
+        #         score += 20
+        # else:
+        #     score += 50
 
-        # EV/EBITDA
-        if not pd.isna(ev_ebitda):
-            if ev_ebitda < 10:
-                score += 90
-            elif ev_ebitda < 16:
-                score += 70
-            elif ev_ebitda < 22:
-                score += 50
-            else:
-                score += 20
-        else:
-            score += 50
+        # # EV/EBITDA
+        # if not pd.isna(ev_ebitda):
+        #     if ev_ebitda < 10:
+        #         score += 90
+        #     elif ev_ebitda < 16:
+        #         score += 70
+        #     elif ev_ebitda < 22:
+        #         score += 50
+        #     else:
+        #         score += 20
+        # else:
+        #     score += 50
 
-        # Price-to-Sales
-        ps = latest_m.get("priceToSalesRatio", np.nan)
-        if not pd.isna(ps):
-            if ps < 3:
-                score += 90
-            elif ps < 6:
-                score += 70
-            elif ps < 10:
-                score += 50
-            else:
-                score += 20
-        else:
-            score += 50
+        # # Price-to-Sales
+        # ps = latest_m.get("priceToSalesRatio", np.nan)
+        # if not pd.isna(ps):
+        #     if ps < 3:
+        #         score += 90
+        #     elif ps < 6:
+        #         score += 70
+        #     elif ps < 10:
+        #         score += 50
+        #     else:
+        #         score += 20
+        # else:
+        #     score += 50
 
-        # Price-to-Book
-        pb = latest_m.get("priceToBookRatio", np.nan)
-        if not pd.isna(pb):
-            if pb < 3:
-                score += 90
-            elif pb < 6:
-                score += 70
-            else:
-                score += 40
-        else:
-            score += 50
+        # # Price-to-Book
+        # pb = latest_m.get("priceToBookRatio", np.nan)
+        # if not pd.isna(pb):
+        #     if pb < 3:
+        #         score += 90
+        #     elif pb < 6:
+        #         score += 70
+        #     else:
+        #         score += 40
+        # else:
+        #     score += 50
 
-        # FCF Yield
-        fcf_y = df_yield["fcf_yield"].iloc[-1]
-        if not pd.isna(fcf_y):
-            if fcf_y > 0.06:
-                score += 90
-            elif fcf_y > 0.04:
-                score += 7
+        # # FCF Yield
+        # fcf_y = df_yield["fcf_yield"].iloc[-1]
+        # if not pd.isna(fcf_y):
+        #     if fcf_y > 0.06:
+        #         score += 90
+        #     elif fcf_y > 0.04:
+        #         score += 7

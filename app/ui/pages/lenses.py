@@ -74,7 +74,7 @@ class LensesPage(BasePage):
         st.write("""
         This page provides **Income Statement waterfall plots** for every reporting period available.
         
-        The waterfall decomposition uses *only the fields that actually exist in your dataset*.
+        The waterfall decomposition uses *only the fields that actually exist in our dataset*.
         """)
 
         st.write("---")

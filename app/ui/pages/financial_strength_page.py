@@ -384,4 +384,4 @@ class FinancialStrengthPage(BasePage):
         st.write(f"- Working capital score: {ccc_score} / 100")
 
         st.write("---")
-        st.markdown("**Notes & sources:** This page uses balance-sheet, cashflow and pre-computed metrics fields from your uploaded dataset (e.g. `cashAndShortTermInvestments`, `totalDebt`, `netDebt`, liquidity & leverage ratios in `metrics` and `financial_metrics`, `operatingCashFlow`, `ebitda`, `interestPaid`, and `cashConversionCycle`). See mock_data.json for field examples. :contentReference[oaicite:3]{index=3} :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}")
+        # st.markdown("**Notes & sources:** This page uses balance-sheet, cashflow and pre-computed metrics fields from your uploaded dataset (e.g. `cashAndShortTermInvestments`, `totalDebt`, `netDebt`, liquidity & leverage ratios in `metrics` and `financial_metrics`, `operatingCashFlow`, `ebitda`, `interestPaid`, and `cashConversionCycle`). See mock_data.json for field examples. :contentReference[oaicite:3]{index=3} :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}")

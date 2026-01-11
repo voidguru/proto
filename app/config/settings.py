@@ -18,6 +18,6 @@ def get_api_key():
         return st.secrets["API_KEY"]
     except FileNotFoundError:
         # For local development without a secrets.toml file
-        return "SasT1HkUMNVFoRdQqorB8GXlZ0q6KDuE"
+        return ""
 
 API_KEY = get_api_key()
