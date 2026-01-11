@@ -280,4 +280,4 @@ class ValuationProblemsPage(BasePage):
             )
 
         st.write("---")
-        st.markdown("**Developer note:** Playground reads data (if present) from the uploaded file at `sandbox:/mnt/data/mock_data.json` to attempt to seed FCF. You can still override all inputs manually.")
+        # st.markdown("**Developer note:** Playground reads data (if present) from the uploaded file at `sandbox:/mnt/data/mock_data.json` to attempt to seed FCF. You can still override all inputs manually.")
