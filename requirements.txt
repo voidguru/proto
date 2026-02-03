@@ -6,3 +6,4 @@ pytest-mock
 boto3
 pydantic
 plotly
+altair
