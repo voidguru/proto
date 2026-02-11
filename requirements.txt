@@ -6,4 +6,5 @@ pytest-mock
 boto3
 pydantic
 plotly
+imghdr
 altair<5
